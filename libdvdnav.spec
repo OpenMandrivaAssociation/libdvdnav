@@ -47,14 +47,13 @@ applications with libdvdnav.
 %patch
 
 %build
-./configure2 --prefix=%_prefix
+./configure2 --prefix=%_prefix --libdir=%_libdir
 make
-./configure2 --prefix=%_prefix --with-dvdread=%_includedir/dvdread
+./configure2 --prefix=%_prefix --libdir=%_libdir --with-dvdread=%_includedir/dvdread
 make
 
 %install
 rm -rf %{buildroot}
-
 %makeinstall_std
 #gw remove buildroot
 perl -pi -e "s^%buildroot^^" %buildroot%_bindir/dvdnav-config
@@ -62,6 +61,9 @@ perl -pi -e "s^%buildroot^^" %buildroot%_bindir/dvdnav-config
 cp obj/libdvdnav.so %buildroot%_libdir/libdvdnav.so.4.0.0
 ln -s %_libdir/libdvdnav.so.4.0.0 %buildroot%_libdir/libdvdnav.so.4
 ln -s %_libdir/libdvdnav.so.4.0.0 %buildroot%_libdir/libdvdnav.so
+%if %_lib != lib
+mv %buildroot%_prefix/lib/lib* %buildroot%_libdir/
+%endif
 
 %post -n %{libname} -p /sbin/ldconfig 
 
