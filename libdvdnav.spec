@@ -1,18 +1,18 @@
 %define major 4
 %define libname %mklibname dvdnav %{major}
 %define develname %mklibname dvdnav -d
+%define svn 956
 
 Name:		libdvdnav
 Summary:	DVD Navigation library
-Version:	0.1.10
-Release:	%mkrel 6
+Version:	4.1.1
+Release:	%mkrel 0.%svn.1
 Group:		System/Libraries
-License:	GPL
-URL:		http://dvd.sourceforge.net/
-Source0:	http://prdownloads.sourceforge.net/dvd/%{name}-%{version}.tar.bz2
-# (fc) 0.1.10-2mdk fix crash with DVD without first play chain (CVS)
-Patch0:		libdvdnav-0.1.10-fixdvdcrash.patch
+License:	GPLv2+
+URL:		http://www.mplayerhq.hu
+Source0:	http://prdownloads.sourceforge.net/dvd/%{name}-%{svn}.tar.bz2
 Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-root
+BuildRequires: libdvdread-devel
 
 %description
 libdvdnav provides support to applications wishing to make use of advanced
@@ -30,10 +30,7 @@ DVD features.
 Summary:	DVD Navigation library headers and support files
 Group:		Development/C
 Requires:	%{libname} = %{version}
-%if "%{_lib}" != "lib"
 Provides:	%{name}-devel = %{version}-%{release}
-%endif
-Provides:	%{mklibname dvdnav 4 -d} = %{version}
 Obsoletes:	%{mklibname dvdnav 4 -d}
 
 %description -n	%{develname}
@@ -45,18 +42,20 @@ applications with libdvdnav.
 
 %prep
 
-%setup -q
-%patch0 -p1 -b .fixdvdcrash
+%setup -q -n %name
 
 %build
-%configure2_5x
-%make
+./configure2 --prefix=%_prefix --with-dvdread=%_includedir/dvdread
+make
 
 %install
 rm -rf %{buildroot}
 
 %makeinstall_std
+#gw remove buildroot
+perl -pi -e "s^%buildroot^^" %buildroot%_bindir/dvdnav-config
 %multiarch_binaries %{buildroot}%{_bindir}/dvdnav-config
+
 
 %post -n %{libname} -p /sbin/ldconfig 
 
@@ -68,14 +67,13 @@ rm -r %{buildroot}
 %files -n %{libname}
 %defattr(-,root,root)
 %doc COPYING README
-%{_libdir}/libdvdnav*.so.%{major}*
+%{_libdir}/libdvdnavmini.so.%{major}*
 
 %files -n %{develname}
 %defattr(-,root,root)
 %doc COPYING NEWS TODO AUTHORS
 %{_bindir}/dvdnav-config
 %{_bindir}/*/dvdnav-config
-%{_libdir}/libdvdnav*.la
-%{_libdir}/libdvdnav*.so
+%{_libdir}/libdvdnavmini.so
+%_libdir/libdvdnavmini.a
 %{_includedir}/dvdnav/
-%{_datadir}/aclocal/dvdnav.m4
