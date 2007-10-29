@@ -6,7 +6,7 @@
 Name:		libdvdnav
 Summary:	DVD Navigation library
 Version:	4.1.1
-Release:	%mkrel 0.%svn.1
+Release:	%mkrel 0.%svn.2
 Group:		System/Libraries
 License:	GPLv2+
 URL:		http://www.mplayerhq.hu
@@ -31,6 +31,9 @@ DVD features.
 Summary:	DVD Navigation library headers and support files
 Group:		Development/C
 Requires:	%{libname} = %{version}
+# dvdnav/dvdnav.h includes files from dvdread, but dvdnav is not linked
+# against dvdread, thus this manual require. -Anssi 10/2007
+Requires:	%{mklibname -d dvdread}
 Provides:	%{name}-devel = %{version}-%{release}
 Obsoletes:	%{mklibname dvdnav 4 -d}
 
