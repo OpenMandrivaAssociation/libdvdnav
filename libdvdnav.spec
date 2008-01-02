@@ -12,6 +12,7 @@ License:	GPLv2+
 URL:		http://www.mplayerhq.hu
 Source0:	http://prdownloads.sourceforge.net/dvd/%{name}-%{svn}.tar.bz2
 Patch: libdvdnav-956-soname.patch
+Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libdvdread-devel
 
 %description
