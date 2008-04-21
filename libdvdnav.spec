@@ -1,17 +1,15 @@
 %define major 4
 %define libname %mklibname dvdnav %{major}
 %define develname %mklibname dvdnav -d
-%define svn 956
 
 Name:		libdvdnav
 Summary:	DVD Navigation library
-Version:	4.1.1
-Release:	%mkrel 0.%svn.2
+Version:	4.1.2
+Release:	%mkrel 1
 Group:		System/Libraries
 License:	GPLv2+
 URL:		http://www.mplayerhq.hu
-Source0:	http://prdownloads.sourceforge.net/dvd/%{name}-%{svn}.tar.bz2
-Patch: libdvdnav-956-soname.patch
+Source0:	%{name}-%{version}.tar.gz
 Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libdvdread-devel
 
@@ -31,9 +29,6 @@ DVD features.
 Summary:	DVD Navigation library headers and support files
 Group:		Development/C
 Requires:	%{libname} = %{version}
-# dvdnav/dvdnav.h includes files from dvdread, but dvdnav is not linked
-# against dvdread, thus this manual require. -Anssi 10/2007
-Requires:	%{mklibname -d dvdread}
 Provides:	%{name}-devel = %{version}-%{release}
 Obsoletes:	%{mklibname dvdnav 4 -d}
 
@@ -46,8 +41,7 @@ applications with libdvdnav.
 
 %prep
 
-%setup -q -n %name
-%patch
+%setup -q
 
 %build
 ./configure2 --prefix=%_prefix --libdir=%_libdir
@@ -61,9 +55,6 @@ rm -rf %{buildroot}
 #gw remove buildroot
 perl -pi -e "s^%buildroot^^" %buildroot%_bindir/dvdnav-config
 %multiarch_binaries %{buildroot}%{_bindir}/dvdnav-config
-cp obj/libdvdnav.so %buildroot%_libdir/libdvdnav.so.4.0.0
-ln -s %_libdir/libdvdnav.so.4.0.0 %buildroot%_libdir/libdvdnav.so.4
-ln -s %_libdir/libdvdnav.so.4.0.0 %buildroot%_libdir/libdvdnav.so
 %if %_lib != lib
 mv %buildroot%_prefix/lib/lib* %buildroot%_libdir/
 %endif
@@ -88,5 +79,5 @@ rm -r %{buildroot}
 %{_bindir}/*/dvdnav-config
 %{_libdir}/libdvdnavmini.so
 %{_libdir}/libdvdnav.so
-%_libdir/libdvdnavmini.a
+%{_libdir}/libdvdnav.a
 %{_includedir}/dvdnav/
