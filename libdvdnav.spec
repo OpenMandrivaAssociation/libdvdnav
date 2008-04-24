@@ -44,8 +44,6 @@ applications with libdvdnav.
 %setup -q
 
 %build
-./configure2 --prefix=%_prefix --libdir=%_libdir
-make
 ./configure2 --prefix=%_prefix --libdir=%_libdir --with-dvdread=%_includedir/dvdread
 make
 
