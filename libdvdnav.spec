@@ -5,11 +5,12 @@
 Name:		libdvdnav
 Summary:	DVD Navigation library
 Version:	4.1.2
-Release:	%mkrel 1
+Release:	%mkrel 2
 Group:		System/Libraries
 License:	GPLv2+
 URL:		http://www.mplayerhq.hu
 Source0:	%{name}-%{version}.tar.gz
+Patch: libdvdnav-4.1.2-c++-header.patch
 Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libdvdread-devel
 
@@ -42,6 +43,7 @@ applications with libdvdnav.
 %prep
 
 %setup -q
+%patch -p1
 
 %build
 ./configure2 --prefix=%_prefix --libdir=%_libdir --with-dvdread=%_includedir/dvdread
