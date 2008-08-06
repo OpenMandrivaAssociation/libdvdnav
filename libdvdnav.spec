@@ -5,7 +5,7 @@
 Name:		libdvdnav
 Summary:	DVD Navigation library
 Version:	4.1.2
-Release:	%mkrel 2
+Release:	%mkrel 3
 Group:		System/Libraries
 License:	GPLv2+
 URL:		http://www.mplayerhq.hu
