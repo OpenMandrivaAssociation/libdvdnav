@@ -1,18 +1,18 @@
 %define major 4
 %define libname %mklibname dvdnav %{major}
 %define develname %mklibname dvdnav -d
+%define svn r1132
 
 Name:		libdvdnav
 Summary:	DVD Navigation library
-Version:	4.1.2
-Release:	%mkrel 3
+Version:	4.1.3
+Release:	%mkrel 0.%svn.1
 Group:		System/Libraries
 License:	GPLv2+
 URL:		http://www.mplayerhq.hu
-Source0:	%{name}-%{version}.tar.gz
-Patch: libdvdnav-4.1.2-c++-header.patch
+Source0:	%{name}-%{svn}.tar.bz2
 Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-root
-BuildRequires: libdvdread-devel
+BuildRequires: libdvdread-devel >= 4.1.3
 
 %description
 libdvdnav provides support to applications wishing to make use of advanced
@@ -42,12 +42,13 @@ applications with libdvdnav.
 
 %prep
 
-%setup -q
-%patch -p1
-
+%setup -q -n %name
+./autogen.sh
 %build
-./configure2 --prefix=%_prefix --libdir=%_libdir --with-dvdread=%_includedir/dvdread
-make
+#./configure2 --prefix=%_prefix --libdir=%_libdir --with-dvdread=%_includedir/dvdread
+%define _disable_ld_no_undefined 1
+%configure2_5x
+%make
 
 %install
 rm -rf %{buildroot}
@@ -55,9 +56,6 @@ rm -rf %{buildroot}
 #gw remove buildroot
 perl -pi -e "s^%buildroot^^" %buildroot%_bindir/dvdnav-config
 %multiarch_binaries %{buildroot}%{_bindir}/dvdnav-config
-%if %_lib != lib
-mv %buildroot%_prefix/lib/lib* %buildroot%_libdir/
-%endif
 
 %if %mdkversion < 200900
 %post -n %{libname} -p /sbin/ldconfig 
@@ -82,6 +80,10 @@ rm -r %{buildroot}
 %{_bindir}/dvdnav-config
 %{_bindir}/*/dvdnav-config
 %{_libdir}/libdvdnavmini.so
+%{_libdir}/libdvdnavmini.la
 %{_libdir}/libdvdnav.so
-%{_libdir}/libdvdnav.a
+%{_libdir}/libdvdnav.la
 %{_includedir}/dvdnav/
+%_datadir/aclocal/dvdnav.m4
+%_libdir/pkgconfig/dvdnav.pc
+%_libdir/pkgconfig/dvdnavmini.pc
