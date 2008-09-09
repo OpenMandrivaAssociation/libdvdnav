@@ -1,16 +1,15 @@
 %define major 4
 %define libname %mklibname dvdnav %{major}
 %define develname %mklibname dvdnav -d
-%define svn r1132
 
 Name:		libdvdnav
 Summary:	DVD Navigation library
 Version:	4.1.3
-Release:	%mkrel 0.%svn.1
+Release:	%mkrel 1
 Group:		System/Libraries
 License:	GPLv2+
 URL:		http://www.mplayerhq.hu
-Source0:	%{name}-%{svn}.tar.bz2
+Source0:	http://www.mplayerhq.hu/MPlayer/releases/dvdnav/%{name}-%{version}.tar.bz2
 Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: libdvdread-devel >= 4.1.3
 
@@ -42,7 +41,7 @@ applications with libdvdnav.
 
 %prep
 
-%setup -q -n %name
+%setup -q
 ./autogen.sh
 %build
 #./configure2 --prefix=%_prefix --libdir=%_libdir --with-dvdread=%_includedir/dvdread
