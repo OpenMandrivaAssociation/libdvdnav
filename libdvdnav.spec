@@ -5,7 +5,7 @@
 Name:		libdvdnav
 Summary:	DVD Navigation library
 Version:	4.1.3
-Release:	%mkrel 5
+Release:	%mkrel 6
 Group:		System/Libraries
 License:	GPLv2+
 URL:		http://www.mplayerhq.hu
@@ -54,6 +54,7 @@ rm -rf %{buildroot}
 %makeinstall_std
 #gw remove buildroot
 perl -pi -e "s^%buildroot^^" %buildroot%_bindir/dvdnav-config
+
 %multiarch_binaries %{buildroot}%{_bindir}/dvdnav-config
 
 %if %mdkversion < 200900
@@ -77,7 +78,7 @@ rm -r %{buildroot}
 %defattr(-,root,root)
 %doc COPYING NEWS TODO AUTHORS
 %{_bindir}/dvdnav-config
-%{_bindir}/*/dvdnav-config
+%{multiarch_bindir}/dvdnav-config
 %{_libdir}/libdvdnavmini.so
 %{_libdir}/libdvdnavmini.la
 %{_libdir}/libdvdnav.so
