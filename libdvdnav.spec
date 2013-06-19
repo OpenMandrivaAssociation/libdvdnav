@@ -8,7 +8,7 @@
 Summary:	DVD Navigation library
 Name:		libdvdnav
 Version:	4.2.0
-Release:	3
+Release:	4
 Group:		System/Libraries
 License:	GPLv2+
 Url:		http://www.mplayerhq.hu
@@ -30,7 +30,7 @@ DVD features.
 %package -n	%{libmini}
 Summary:	DVD Navigation library
 Group:		System/Libraries
-Conflicts:	%{_lib}libdvdnav4 < 4.2.0-3
+Conflicts:	%{_lib}dvdnav4 < 4.2.0-3
 
 %description -n	%{libmini}
 libdvdnavmini provides support to applications wishing to make use of advanced
