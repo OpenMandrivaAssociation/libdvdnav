@@ -14,7 +14,8 @@ License:	GPLv2+
 Url:		http://www.mplayerhq.hu
 Source0:	http://dvdnav.mplayerhq.hu/releases/%{name}-%{version}.tar.bz2
 BuildRequires:	pkgconfig(dvdread)
-Patch0:		segfault-fix.patch
+Patch0:		segfault1-fix.patch
+Patch1:		segfault2-fix.patch
 
 %description
 libdvdnav provides support to applications wishing to make use of advanced
