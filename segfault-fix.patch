@@ -1,5 +1,5 @@
---- trunk/libdvdnav-4.2.0/src/remap.c	Tue Feb  5 22:25:29 2013	(r1251)
-+++ trunk/libdvdnav-4.2.0/src/remap.c	Sun Mar 17 15:06:49 2013	(r1252)
+--- libdvdnav-4.2.0/src/remap.c	Tue Feb  5 22:25:29 2013	(r1251)
++++ libdvdnav-4.2.0/src/remap.c	Sun Mar 17 15:06:49 2013	(r1252)
 @@ -22,6 +22,7 @@
  
  #include <stdlib.h>
@@ -11,8 +11,8 @@
 
 Index: searching.c
 ===================================================================
---- trunk/libdvdnav-4.2.0/src/searching.c	(revision 1251)
-+++ trunk/libdvdnav-4.2.0/src/searching.c	(working copy)
+--- libdvdnav-4.2.0/src/searching.c	(revision 1251)
++++ libdvdnav-4.2.0/src/searching.c	(working copy)
 @@ -617,7 +617,7 @@
    for(i=0; i<parts; i++) {
      uint32_t cellnr, endcellnr;
