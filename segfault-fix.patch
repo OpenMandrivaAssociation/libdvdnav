@@ -1,0 +1,24 @@
+--- trunk/libdvdnav-4.2.0/src/remap.c	Tue Feb  5 22:25:29 2013	(r1251)
++++ trunk/libdvdnav-4.2.0/src/remap.c	Sun Mar 17 15:06:49 2013	(r1252)
+@@ -22,6 +22,7 @@
+ 
+ #include <stdlib.h>
+ #include <string.h>
++#include <strings.h>
+ #include <stdio.h>
+ 
+ #ifndef _MSC_VER
+
+Index: searching.c
+===================================================================
+--- trunk/libdvdnav-4.2.0/src/searching.c	(revision 1251)
++++ trunk/libdvdnav-4.2.0/src/searching.c	(working copy)
+@@ -617,7 +617,7 @@
+   for(i=0; i<parts; i++) {
+     uint32_t cellnr, endcellnr;
+     pgc = ifo->vts_pgcit->pgci_srp[ptt[i].pgcn-1].pgc;
+-    if(ptt[i].pgn > pgc->nr_of_programs) {
++    if(ptt[i].pgn > 0 && ptt[i].pgn > pgc->nr_of_programs) {
+       printerr("WRONG part number.");
+       goto fail;
+     }
