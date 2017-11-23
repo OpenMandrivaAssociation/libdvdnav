@@ -11,7 +11,7 @@ Release:	1
 Group:		System/Libraries
 License:	GPLv2+
 Url:		http://www.mplayerhq.hu
-Source0:	http://dvdnav.mplayerhq.hu/releases/%{name}-%{version}.tar.bz2
+Source0:	http://download.videolan.org/pub/videolan/libdvdnav/%{version}/%{name}-%{version}.tar.bz2
 BuildRequires:	pkgconfig(dvdread) >= 5.0.2
 
 %description
