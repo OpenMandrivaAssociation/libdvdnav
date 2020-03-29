@@ -6,7 +6,7 @@
 
 Summary:	DVD Navigation library
 Name:		libdvdnav
-Version:	6.0.1
+Version:	6.1.0
 Release:	1
 Group:		System/Libraries
 License:	GPLv2+
