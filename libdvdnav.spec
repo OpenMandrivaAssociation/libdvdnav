@@ -7,7 +7,7 @@
 Summary:	DVD Navigation library
 Name:		libdvdnav
 Version:	6.1.0
-Release:	1
+Release:	2
 Group:		System/Libraries
 License:	GPLv2+
 Url:		http://www.mplayerhq.hu
@@ -41,11 +41,11 @@ applications with libdvdnav.
 %autopatch -p1
 
 %build
-%configure2_5x
-%make
+%configure
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 rm -rf %{buildroot}%{_datadir}/doc/${name}
 
