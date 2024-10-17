@@ -10,7 +10,7 @@ Version:	6.1.1
 Release:	2
 Group:		System/Libraries
 License:	GPLv2+
-Url:		http://www.mplayerhq.hu
+Url:		https://www.mplayerhq.hu
 Source0:	http://download.videolan.org/pub/videolan/libdvdnav/%{version}/%{name}-%{version}.tar.bz2
 BuildRequires:	pkgconfig(dvdread) >= 5.0.2
 
