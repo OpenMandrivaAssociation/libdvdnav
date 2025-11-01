@@ -6,13 +6,14 @@
 
 Summary:	DVD Navigation library
 Name:		libdvdnav
-Version:	6.1.1
-Release:	2
+Version:	7.0.0
+Release:	1
 Group:		System/Libraries
 License:	GPLv2+
 Url:		https://www.mplayerhq.hu
-Source0:	http://download.videolan.org/pub/videolan/libdvdnav/%{version}/%{name}-%{version}.tar.bz2
-BuildRequires:	pkgconfig(dvdread) >= 5.0.2
+Source0:  https://code.videolan.org/videolan/libdvdnav/-/archive/%{version}/libdvdnav-%{version}.tar.bz2
+#Source0:	http://download.videolan.org/pub/videolan/libdvdnav/%{version}/%{name}-%{version}.tar.bz2
+BuildRequires:	pkgconfig(dvdread) >= 7.0.0
 
 %description
 libdvdnav provides support to applications wishing to make use of advanced
@@ -37,15 +38,14 @@ This package contains the C headers and support files for compiling
 applications with libdvdnav.
 
 %prep
-%setup -q
-%autopatch -p1
+%autosetup -p1
 
 %build
-%configure
-%make_build
+%meson
+%meson_build
 
 %install
-%make_install
+%meson_install
 
 rm -rf %{buildroot}%{_datadir}/doc/${name}
 
@@ -57,4 +57,3 @@ rm -rf %{buildroot}%{_datadir}/doc/${name}
 %{_libdir}/libdvdnav.so
 %{_includedir}/dvdnav/
 %{_libdir}/pkgconfig/dvdnav.pc
-
