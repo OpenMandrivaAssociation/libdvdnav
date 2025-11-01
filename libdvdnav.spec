@@ -53,7 +53,7 @@ rm -rf %{buildroot}%{_datadir}/doc/${name}
 %{_libdir}/libdvdnav.so.%{major}*
 
 %files -n %{devname}
-%doc COPYING ChangeLog TODO AUTHORS README
+%doc COPYING ChangeLog TODO AUTHORS
 %{_libdir}/libdvdnav.so
 %{_includedir}/dvdnav/
 %{_libdir}/pkgconfig/dvdnav.pc
