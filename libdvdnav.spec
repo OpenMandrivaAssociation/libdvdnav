@@ -48,6 +48,8 @@ applications with libdvdnav.
 %meson_install
 
 rm -rf %{buildroot}%{_datadir}/doc/${name}
+# remove not wanted
+rm -f %{buildroot}/%{_libdir}/libdvdnav.a
 
 %files -n %{libname}
 %{_libdir}/libdvdnav.so.%{major}*
